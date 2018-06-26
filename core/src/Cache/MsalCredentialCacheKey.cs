@@ -50,7 +50,7 @@ namespace Microsoft.Identity.Core.Cache
 
             this.CredentialType = credentialType;
             this.ClientId = clientId;
-            this.Scopes = scopes;
+            this.Scopes = GetScopesAsString(scopes);
             this.TenantId = tenantId;
         }
 
@@ -58,19 +58,30 @@ namespace Microsoft.Identity.Core.Cache
 
         internal string ClientId { get; set; }
 
-        internal SortedSet<string> Scopes { get; set; }
+        internal string Scopes { get; set; }
+
+        private string GetScopesAsString(SortedSet<string> scopes)
+        {
+            if (scopes != null)
+            {
+                var lowerCaseScopes = new SortedSet<string>();
+                lowerCaseScopes.UnionWith(scopes.Select(x => x.ToLower()));
+                return string.Join(ScopesDelimiter, lowerCaseScopes);
+            }
+            return "";
+        }
 
         internal string TenantId { get; set; }
 
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append((UserIdentifier ?? "") + CacheKeyDelimiter);
+            stringBuilder.Append((HomeAccountId ?? "") + CacheKeyDelimiter);
             stringBuilder.Append(this.Environment + CacheKeyDelimiter);
             stringBuilder.Append(CredentialType + CacheKeyDelimiter);
             stringBuilder.Append(ClientId + CacheKeyDelimiter);
             stringBuilder.Append((TenantId ?? "") + CacheKeyDelimiter);
-            stringBuilder.Append(Scopes != null ? string.Join(ScopesDelimiter, Scopes) : "");
+            stringBuilder.Append(Scopes);
 
             return stringBuilder.ToString();
         }

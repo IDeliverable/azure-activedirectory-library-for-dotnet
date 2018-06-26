@@ -157,7 +157,7 @@ namespace Microsoft.Identity.Core.Helpers
             return String.Join(" ", input);
         }
 
-        internal static SortedSet<string> AsSet(this string singleString)
+        internal static SortedSet<string> AsSortedSet(this string singleString)
         {
             if (String.IsNullOrEmpty(singleString))
             {

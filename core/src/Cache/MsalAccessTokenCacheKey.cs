@@ -32,7 +32,7 @@ namespace Microsoft.Identity.Core.Cache
     internal class MsalAccessTokenCacheKey : MsalCredentialCacheKey
     {
         internal MsalAccessTokenCacheKey(string environment, string tenantId, string userIdentifier, string clientId, SortedSet<string> scopes)
-            : base(environment, tenantId, userIdentifier, CredentialType.AccessToken, clientId, scopes)
+            : base(environment, tenantId, userIdentifier, CredentialType.accesstoken, clientId, scopes)
         {
         }
     }
