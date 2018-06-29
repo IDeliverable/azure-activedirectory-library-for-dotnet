@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.1;netstandard1.3;win81;MonoAndroid8.1;Xamarin.iOS10</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard1.1;netstandard1.3;MonoAndroid8.1;Xamarin.iOS10</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>build\Core.snk</AssemblyOriginatorKeyFile>
